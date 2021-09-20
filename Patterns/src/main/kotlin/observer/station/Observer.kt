@@ -1,4 +1,6 @@
-package observer
+package observer.station
+
+import observer.Beehive
 
 interface Observer {
     fun update(beehive: Beehive)

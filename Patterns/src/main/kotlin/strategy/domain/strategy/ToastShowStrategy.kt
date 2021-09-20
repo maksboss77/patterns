@@ -1,4 +1,4 @@
-package strategy.domain
+package strategy.domain.strategy
 
 class ToastShowStrategy : ShowStrategy {
     override fun show(text: String) {

@@ -4,7 +4,7 @@ object Singleton {
 
     private var uniqueInstance: Singleton? = null
     private var indexConnected = 0
-    private var globalIndexConnected = 0
+    private var poolConnected = 0
 
     @Synchronized //чтобы избежать параллельного доступа
     fun getInstance(): Singleton {
@@ -13,7 +13,7 @@ object Singleton {
 
         if (uniqueInstance == null || indexConnected.invalidConnected()) {
             uniqueInstance = Singleton
-            globalIndexConnected++
+            poolConnected++
             indexConnected = 1
         }
 
@@ -26,6 +26,6 @@ object Singleton {
 
     fun getIndexConnected(): Int = indexConnected
 
-    fun getGlobalIndexConnected(): Int = globalIndexConnected
+    fun getGlobalIndexConnected(): Int = poolConnected
 
 }

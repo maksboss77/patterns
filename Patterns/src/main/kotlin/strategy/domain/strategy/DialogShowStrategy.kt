@@ -1,4 +1,4 @@
-package strategy.domain
+package strategy.domain.strategy
 
 class DialogShowStrategy : ShowStrategy {
     override fun show(text: String) {

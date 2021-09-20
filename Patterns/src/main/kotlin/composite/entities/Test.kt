@@ -1,7 +1,5 @@
 package composite.entities
 
-import composite.TestComponent
-
 class Test(
     private val groupId: Int,
     private val name: String
@@ -22,4 +20,21 @@ class Test(
     override fun print() {
         println("TEST: << $name>> ($groupId)")
     }
+
+    override fun add(testComponent: TestComponent) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addAll(testComponentList: List<TestComponent>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun remove(testComponent: TestComponent) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getChild(id: Int): TestComponent {
+        TODO("Not yet implemented")
+    }
+
 }

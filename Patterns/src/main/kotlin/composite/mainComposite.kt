@@ -1,6 +1,7 @@
 package composite
 
 import composite.entities.Test
+import composite.entities.TestComponent
 import composite.entities.TestGroup
 import composite.entities.TestRail
 
@@ -11,6 +12,8 @@ import composite.entities.TestRail
  * Группа название и id
  * Тесты название и idГруппы
  * */
+
+// TODO: не понял как реализовать с помощью sealed классов
 
 fun main() {
     val allTests: TestComponent = TestGroup(name = "ALL TEST", id = 0)

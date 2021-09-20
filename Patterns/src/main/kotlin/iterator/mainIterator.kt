@@ -1,9 +1,15 @@
 package iterator
 
 import iterator.iterators.AuthorIterator
-import iterator.iterators.BookIterator
+import iterator.iterators.BaseBookIterator
 import iterator.iterators.NameIterator
 import iterator.iterators.YearIterator
+
+//
+//import iterator.iterators.AuthorIterator
+//import iterator.iterators.BookIterator
+//import iterator.iterators.NameIterator
+//import iterator.iterators.YearIterator
 
 /**
  *
@@ -15,19 +21,23 @@ import iterator.iterators.YearIterator
 fun main() {
 
     val books = Book.DEFAULT_LIST
+    println(books)
 
     val yearIterator = YearIterator(books)
     yearIterator.show(YEAR_SORTED)
+    println(books)
 
     val nameIterator = NameIterator(books)
     nameIterator.show(NAME_SORTED)
+    println(books)
 
     val authorIterator = AuthorIterator(books)
     authorIterator.show(AUTHOR_SORTED)
+    println(books)
 
 }
 
-private fun BookIterator<Book>.show(sortedName: String) {
+private fun BaseBookIterator.show(sortedName: String) {
     println(sortedName)
     while (this.hasNext()) {
         val element = nextElement()

@@ -1,14 +1,11 @@
 package composite.entities
 
-import composite.TestComponent
-
-
-data class TestGroup(
+class TestGroup(
     private val id: Int,
     private val name: String,
-): TestComponent() {
+) : TestComponent() {
 
-    private var testComponents = arrayListOf<TestComponent>()
+    private var testComponents = mutableListOf<TestComponent>()
 
     override fun add(testComponent: TestComponent) {
         testComponents.add(testComponent)
@@ -32,6 +29,10 @@ data class TestGroup(
 
     override fun getId(): Int {
         return id
+    }
+
+    override fun getParentId(): Int {
+        TODO("Not yet implemented")
     }
 
     override fun print() {

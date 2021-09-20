@@ -11,9 +11,9 @@ fun main() {
     val error = Error(code = 12, message = "Ошибка!", initializer = "main")
 
     val toastError = ToastError(error)
-    toastError.showError()
+    toastError.checkError(5, 2)
 
     val dialogError = DialogError(error)
-    dialogError.showError()
+    dialogError.checkError(5, 0)
 
 }

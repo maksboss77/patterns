@@ -1,6 +1,8 @@
 package iterator.iterators
 
-interface BookIterator<out T> {
-    fun nextElement(): T
+import iterator.Book
+
+interface BookIterator {
+    fun nextElement(): Book
     fun hasNext(): Boolean
 }

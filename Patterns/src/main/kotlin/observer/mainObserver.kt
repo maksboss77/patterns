@@ -5,8 +5,12 @@ import observer.station.MoscowStation
 
 fun main() {
     val beehiveSubject = BeehiveSubject()
+
     val moscowStation = MoscowStation(beehiveSubject)
-    val minskStation = SanktPeterburgStation(beehiveSubject)
+    beehiveSubject.registerObserver(moscowStation)
+
+    val sanktPeterburgStation = SanktPeterburgStation(beehiveSubject)
+    beehiveSubject.registerObserver(sanktPeterburgStation)
 
     beehiveSubject.updateBeehiveStatus(50, 5)
     beehiveSubject.updateBeehiveStatus(25, 5)
@@ -19,6 +23,7 @@ fun main() {
     beehiveSubject.updateBeehiveStatus(60, 5)
     beehiveSubject.updateBeehiveStatus(40, 4)
     beehiveSubject.updateAlarmStatus(true)
+    beehiveSubject.removeObserver(moscowStation)
     beehiveSubject.updateBeehiveStatus(2, 0)
     beehiveSubject.updateBeehiveStatus(1, 0)
     beehiveSubject.updateBeehiveStatus(1, 0)

@@ -1,15 +1,16 @@
 package observer
 
+import observer.station.Observer
+
 class BeehiveSubject : Subject {
 
-    private val observers = arrayListOf<Observer>()
+    private val observers = mutableListOf<Observer>()
 
     override fun registerObserver(observer: Observer) {
         observers.add(observer)
     }
 
     override fun removeObserver(observer: Observer) {
-        //не удаляй, пока не оповестил всех!
         observers.remove(observer)
     }
 
@@ -20,7 +21,6 @@ class BeehiveSubject : Subject {
     }
 
 
-    //TODO: если отписывается один из слушателей, то до других не доходит Alarm
     override fun alarmObserver(bearIsHere: Boolean) {
         observers.forEach { observer ->
             observer.alarm(bearIsHere)
