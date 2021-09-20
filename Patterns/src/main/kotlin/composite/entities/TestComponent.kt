@@ -1,14 +1,27 @@
 package composite.entities
 
-sealed class TestComponent {
-    abstract fun add(testComponent: TestComponent)
-    abstract fun addAll(testComponentList: List<TestComponent>)
-    abstract fun remove(testComponent: TestComponent)
+sealed class TestComponent(open val name: String) {
 
-    abstract fun getChild(id: Int): TestComponent
-    abstract fun getId(): Int
-    abstract fun getParentId(): Int
+    open fun print() {
+        println(name)
+    }
 
-    abstract fun getName(): String
-    abstract fun print()
+    data class Test(
+        override val name: String
+    ) : TestComponent(name)
+
+    class TestGroup(
+        override val name: String,
+        val list: MutableList<TestComponent>
+    ) : TestComponent(name) {
+        override fun print() {
+            println("GROUP :: $name")
+            list.forEach{
+                print("-")
+                it.print()
+            }
+        }
+    }
+
 }
+

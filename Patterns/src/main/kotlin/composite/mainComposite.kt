@@ -1,9 +1,6 @@
 package composite
 
-import composite.entities.Test
 import composite.entities.TestComponent
-import composite.entities.TestGroup
-import composite.entities.TestRail
 
 /**
  *
@@ -13,54 +10,57 @@ import composite.entities.TestRail
  * Тесты название и idГруппы
  * */
 
-// TODO: не понял как реализовать с помощью sealed классов
-
 fun main() {
-    val allTests: TestComponent = TestGroup(name = "ALL TEST", id = 0)
-    val groupTest = createTestGroup()
-    allTests.addAll(groupTest)
 
-    val testRail = TestRail(allTests)
-    testRail.printTests()
+    val allTests: TestComponent.TestGroup = TestComponent.TestGroup(name = "ALL-TEST", list = mutableListOf())
+    allTests.list.addAll(createTest())
 
+    val uxTest = TestComponent.TestGroup("UX-TEST", mutableListOf())
+    uxTest.list.addAll(createTest())
+
+    allTests.list.add(uxTest)
+
+    allTests.print()
 
 }
 
-private fun createTestGroup(): List<TestComponent> {
-
-    val list = mutableListOf<TestComponent>()
-
-    val uiTest: TestComponent = TestGroup(1, "UI-тесты") // есть 3 теста
-    val uxTest: TestComponent = TestGroup(2, "UX-тесты") // есть 3 теста + subUx + 3 теста
-    val smokeTest: TestComponent = TestGroup(3, "Smoke") // без тестов + subSmoke +  без тестов
-    val regressTest: TestComponent = TestGroup(4, "Регресс-тесты") // есть 3 теста
-
-    uiTest.addAll(createTest(uiTest.getId()))
-
-
-    val subUx: TestComponent = TestGroup(101, "SubUx")
-    subUx.addAll(createTest(subUx.getId()))
-    uxTest.add(subUx)
-    uxTest.addAll(createTest(uxTest.getId()))
-
-    smokeTest.add(TestGroup(102, "SubSmoke"))
-
-    regressTest.addAll(createTest(regressTest.getId()))
-
-    list.add(uiTest)
-    list.add(uxTest)
-    list.add(smokeTest)
-    list.add(regressTest)
-    return list
-}
-
-
-private fun createTest(parentId: Int): List<TestComponent> {
-    return listOf<TestComponent>(
-        Test(parentId, "Test 1.$parentId"),
-        Test(parentId, "Test 2.$parentId"),
-        Test(parentId, "Test 3.$parentId"),
+private fun createTest(): List<TestComponent.Test> {
+    return listOf(
+        TestComponent.Test("Test 1"),
+        TestComponent.Test("Test 2"),
+        TestComponent.Test("Test 3"),
     )
 }
+
+//private fun createTestGroup(): List<TestComponent> {
+//
+//    val list = mutableListOf<TestComponent>()
+//
+//    val uiTest: TestComponent = TestGroup(1, "UI-тесты") // есть 3 теста
+//    val uxTest: TestComponent = TestGroup(2, "UX-тесты") // есть 3 теста + subUx + 3 теста
+//    val smokeTest: TestComponent = TestGroup(3, "Smoke") // без тестов + subSmoke +  без тестов
+//    val regressTest: TestComponent = TestGroup(4, "Регресс-тесты") // есть 3 теста
+//
+//    uiTest.addAll(createTest(uiTest.getId()))
+//
+//
+//    val subUx: TestComponent = TestGroup(101, "SubUx")
+//    subUx.addAll(createTest(subUx.getId()))
+//    uxTest.add(subUx)
+//    uxTest.addAll(createTest(uxTest.getId()))
+//
+//    smokeTest.add(TestGroup(102, "SubSmoke"))
+//
+//    regressTest.addAll(createTest(regressTest.getId()))
+//
+//    list.add(uiTest)
+//    list.add(uxTest)
+//    list.add(smokeTest)
+//    list.add(regressTest)
+//    return list
+//}
+
+
+
 
 
